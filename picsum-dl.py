@@ -4,8 +4,8 @@ import argparse
 
 
 def download_images(count, width, height=None):
-    # Tworzymy folder na pobrane obrazy
-    os.makedirs('picsum-dl', exist_ok=True)
+    folder_name = 'picsum-dl'
+    os.makedirs(folder_name, exist_ok=True)
 
     for i in range(1, count + 1):
         # Budowanie URL do pobierania obrazu
@@ -19,7 +19,7 @@ def download_images(count, width, height=None):
 
         if response.status_code == 200:
             # Zapisujemy obraz do pliku
-            with open(f'piscum-dl/image_{i}.jpg', 'wb') as f:
+            with open(os.path.join(folder_name, f'image_{i}.jpg'), 'wb') as f:
                 f.write(response.content)
             print(f"Image {i} has been saved.")
         else:
